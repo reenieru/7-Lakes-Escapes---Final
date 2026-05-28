@@ -1,0 +1,650 @@
+/* ── VARIABLES ───────────────────────────────────────────── */
+:root {
+  --forest: #0B3D1A;
+  --pine: #17692C;
+  --moss: #3A8A3C;
+  --sage: #6DA170;
+  --leaf: #8CC48B;
+  --mint: #DBECDC;
+  --cream: #F5F8EE;
+  --linen: #F3F8F1;
+  --mist: #E4EEE3;
+  --text-dark: #102F1F;
+  --text-mid: #33643D;
+}
+
+/* ── RESET ───────────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  font-family: 'Jost', sans-serif;
+  background-color: var(--forest);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+}
+
+/* ── FULL-PAGE BACKGROUND PATTERN ───────────────────────── */
+.bg-pattern {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+/* Radial warm glow */
+.bg-pattern::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 70% 40%, rgba(140, 196, 139, 0.18) 0%, transparent 70%),
+    radial-gradient(ellipse 60% 80% at 20% 70%, rgba(15, 66, 28, 0.35) 0%, transparent 65%);
+}
+
+/* ── GEOMETRIC SVG DECORATIONS ───────────────────────────── */
+.geo-left,
+.geo-right,
+.geo-top,
+.geo-bottom {
+  position: fixed;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.55;
+}
+
+.geo-left {
+  left: -40px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.geo-right {
+  right: -40px;
+  top: 50%;
+  transform: translateY(-50%) scaleX(-1);
+}
+
+.geo-top {
+  top: -40px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.geo-bottom {
+  bottom: -40px;
+  left: 50%;
+  transform: translateX(-50%) scaleY(-1);
+}
+
+/* ── MAIN CARD ───────────────────────────────────────────── */
+.card-wrap {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  width: min(900px, 96vw);
+  min-height: 560px;
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow:
+    0 0 0 1px rgba(140, 196, 139, 0.25),
+    0 32px 80px rgba(0, 0, 0, 0.55),
+    0 0 120px rgba(15, 66, 28, 0.16);
+  animation: cardReveal 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes cardReveal {
+  from {
+    opacity: 0;
+    transform: translateY(28px) scale(0.97);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* ── LEFT PANEL ──────────────────────────────────────────── */
+.panel-left {
+  flex: 0 0 42%;
+  background: linear-gradient(180deg, var(--pine) 0%, var(--forest) 100%);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 32px;
+  overflow: hidden;
+}
+
+/* Layered geometric overlay on left panel */
+.panel-left::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    repeating-linear-gradient(45deg,
+      transparent,
+      transparent 18px,
+      rgba(140, 196, 139, 0.12) 18px,
+      rgba(140, 196, 139, 0.12) 19px),
+    repeating-linear-gradient(-45deg,
+      transparent,
+      transparent 18px,
+      rgba(58, 138, 60, 0.14) 18px,
+      rgba(58, 138, 60, 0.14) 19px);
+}
+
+.panel-left::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(160deg, rgba(58, 138, 60, 0.45) 0%, rgba(11, 61, 26, 0.65) 100%);
+}
+
+.panel-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+}
+
+/* ── LOGO MARK ───────────────────────────────────────────── */
+.logo-container {
+  position: relative;
+  width: 110px;
+  height: 110px;
+  margin: 0 auto 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.brand-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--cream);
+  letter-spacing: 0.02em;
+  line-height: 1.1;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
+}
+
+.brand-title span {
+  display: block;
+  font-size: 1rem;
+  font-weight: 400;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--leaf);
+  margin-bottom: 4px;
+}
+
+.brand-tagline {
+  margin-top: 16px;
+  font-size: 0.78rem;
+  color: rgba(243, 248, 241, 0.65);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  font-weight: 300;
+}
+
+/* Decorative rule */
+.rule {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 20px auto;
+  width: 80%;
+}
+
+.rule-line {
+  flex: 1;
+  height: 1px;
+  background: rgba(140, 196, 139, 0.3);
+}
+
+.rule-diamond {
+  width: 6px;
+  height: 6px;
+  background: var(--leaf);
+  transform: rotate(45deg);
+  flex-shrink: 0;
+}
+
+.left-features {
+  list-style: none;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+
+.left-features li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.8rem;
+  color: rgba(245, 236, 215, 0.65);
+  font-weight: 300;
+  letter-spacing: 0.05em;
+}
+
+.left-features li::before {
+  content: '';
+  width: 10px;
+  height: 10px;
+  border: 1px solid rgba(228, 168, 32, 0.4);
+  transform: rotate(45deg);
+  flex-shrink: 0;
+  background: rgba(228, 168, 32, 0.08);
+}
+
+/* ── RIGHT PANEL ─────────────────────────────────────────── */
+.panel-right {
+  flex: 1;
+  background: var(--linen);
+  padding: 48px 44px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+}
+
+/* Subtle top-corner weave accent */
+.panel-right::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 140px;
+  height: 140px;
+  background:
+    repeating-linear-gradient(0deg,
+      transparent, transparent 7px,
+      rgba(58, 138, 60, 0.1) 7px, rgba(58, 138, 60, 0.1) 8px),
+    repeating-linear-gradient(90deg,
+      transparent, transparent 7px,
+      rgba(58, 138, 60, 0.1) 7px, rgba(58, 138, 60, 0.1) 8px);
+  clip-path: polygon(100% 0, 0 0, 100% 100%);
+}
+
+.panel-right::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100px;
+  height: 100px;
+  background:
+    repeating-linear-gradient(45deg,
+      transparent, transparent 5px,
+      rgba(106, 165, 107, 0.08) 5px, rgba(106, 165, 107, 0.08) 6px);
+  clip-path: polygon(0 100%, 0 0, 100% 100%);
+}
+
+/* ── TABS ────────────────────────────────────────────────── */
+.tab-row {
+  display: flex;
+  gap: 0;
+  margin-bottom: 36px;
+  border-bottom: 2px solid var(--mist);
+  position: relative;
+  z-index: 1;
+}
+
+.tab-btn {
+  flex: 1;
+  padding: 12px 0;
+  font-family: 'Jost', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  cursor: pointer;
+  border: none;
+  background: transparent;
+  color: var(--text-mid);
+  opacity: 0.45;
+  position: relative;
+  transition: opacity 0.3s;
+}
+
+.tab-btn.active {
+  opacity: 1;
+  color: var(--forest);
+}
+
+.tab-btn.active::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--leaf);
+}
+
+/* Diamond tab indicator */
+.tab-btn.active::before {
+  content: '';
+  position: absolute;
+  bottom: -6px;
+  left: 50%;
+  transform: translateX(-50%) rotate(45deg);
+  width: 8px;
+  height: 8px;
+  background: var(--leaf);
+}
+
+/* ── FORM HEADING ────────────────────────────────────────── */
+.form-head {
+  margin-bottom: 28px;
+  position: relative;
+  z-index: 1;
+}
+
+.form-head h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.85rem;
+  font-weight: 600;
+  color: var(--forest);
+  line-height: 1.2;
+}
+
+.form-head h2 em {
+  color: var(--leaf);
+  font-style: italic;
+}
+
+.form-head p {
+  margin-top: 6px;
+  font-size: 0.85rem;
+  color: var(--text-dark);
+  opacity: 0.8;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+}
+
+/* ── FORM FIELDS ─────────────────────────────────────────── */
+.form-group {
+  margin-bottom: 20px;
+  position: relative;
+  z-index: 1;
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-mid);
+  margin-bottom: 8px;
+}
+
+.input-wrap {
+  position: relative;
+}
+
+.input-wrap .icon {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+.form-input {
+  width: 100%;
+  padding: 13px 44px 13px 42px;
+  /* Extra right padding prevents typing text under the eye toggle */
+  background: var(--cream);
+  border: 1.5px solid rgba(23, 105, 44, 0.25);
+  border-radius: 4px;
+  font-family: 'Jost', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-dark) !important;
+  /* Fixes text visibility over light background fields */
+  outline: none;
+  transition: border-color 0.25s, box-shadow 0.25s, background 0.25s;
+}
+
+.form-input::placeholder {
+  color: rgba(16, 47, 31, 0.4);
+}
+
+.form-input:focus {
+  border-color: var(--pine);
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(23, 105, 44, 0.12);
+}
+
+/* Password toggle vertical alignment fix */
+.toggle-pass {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  color: var(--pine);
+  opacity: 0.6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.2s;
+  z-index: 5;
+}
+
+.toggle-pass:hover {
+  opacity: 1;
+}
+
+.toggle-pass svg {
+  width: 18px;
+  height: 18px;
+  display: block;
+}
+
+/* ── MESSAGES ────────────────────────────────────────────── */
+.msg {
+  padding: 11px 16px;
+  border-radius: 2px;
+  font-size: 0.82rem;
+  font-weight: 400;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  animation: msgIn 0.35s ease both;
+  position: relative;
+  z-index: 1;
+}
+
+@keyframes msgIn {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.msg.error {
+  background: rgba(58, 138, 60, 0.1);
+  border-left: 3px solid var(--moss);
+  color: var(--forest);
+}
+
+.msg.success {
+  background: rgba(140, 196, 139, 0.15);
+  border-left: 3px solid var(--leaf);
+  color: var(--text-dark);
+}
+
+/* ── SUBMIT BTN ──────────────────────────────────────────── */
+.btn-submit {
+  width: 100%;
+  padding: 15px;
+  background: var(--moss);
+  border: none;
+  border-radius: 4px;
+  font-family: 'Jost', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--linen);
+  cursor: pointer;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  transition: background 0.3s, box-shadow 0.3s, transform 0.15s;
+}
+
+.btn-submit::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.btn-submit::after {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 2px;
+  pointer-events: none;
+}
+
+.btn-submit:hover {
+  background: var(--forest);
+  box-shadow: 0 6px 28px rgba(26, 70, 33, 0.35);
+  transform: translateY(-1px);
+}
+
+.btn-submit:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+/* Loading state and inline side-spinner adjustments */
+.btn-submit.loading {
+  pointer-events: none;
+  background: var(--forest);
+}
+
+.btn-submit.loading .btn-text {
+  opacity: 0.4;
+  /* Softly dims the text during request processes without layout collapse */
+}
+
+.btn-submit .spinner {
+  display: none;
+  position: absolute;
+  right: 24px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.btn-submit.loading .spinner {
+  display: flex;
+  align-items: center;
+}
+
+.spinner svg {
+  animation: rotate 0.8s linear infinite;
+  stroke: var(--leaf);
+}
+
+@keyframes rotate {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ── FORGOT / REGISTER ───────────────────────────────────── */
+.form-footer {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 0.82rem;
+  color: var(--text-mid);
+  position: relative;
+  z-index: 1;
+  letter-spacing: 0.04em;
+}
+
+.form-footer a {
+  color: var(--pine);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.2s;
+}
+
+.form-footer a:hover {
+  color: var(--moss);
+}
+
+/* ── FORM PANEL VISIBILITY ───────────────────────────────── */
+.form-panel {
+  display: none;
+}
+
+.form-panel.active {
+  display: block;
+}
+
+/* ── RESPONSIVE ──────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .card-wrap {
+    flex-direction: column;
+    min-height: auto;
+  }
+
+  .panel-left {
+    flex: none;
+    padding: 36px 24px 28px;
+  }
+
+  .brand-title {
+    font-size: 1.5rem;
+  }
+
+  .left-features {
+    display: none;
+  }
+
+  .panel-right {
+    padding: 32px 24px;
+  }
+}

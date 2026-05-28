@@ -1,0 +1,307 @@
+/* ── Tourist Portal Stylesheet ─────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --green:      #33643d;
+  --green-mid:  #5a8a42;
+  --green-light:#e6efe6;
+  --cream:      #f5f0e8;
+  --cream-dark: #ece5d6;
+  --text:       #1a2e1a;
+  --text-muted: rgba(51,100,61,0.55);
+  --border:     rgba(51,100,61,0.15);
+  --radius:     10px;
+  --shadow:     0 2px 16px rgba(51,100,61,0.10);
+}
+
+body {
+  font-family: 'Jost', sans-serif;
+  background: var(--cream);
+  color: var(--text);
+  min-height: 100vh;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────────── */
+.t-nav {
+  background: var(--green);
+  padding: 0 32px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.18);
+}
+.t-nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: #fff;
+}
+.t-nav-brand img { height: 32px; width: 32px; border-radius: 50%; }
+.t-nav-brand-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.15rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  line-height: 1;
+}
+.t-nav-links {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.t-nav-link {
+  color: rgba(255,255,255,0.80);
+  text-decoration: none;
+  font-size: 0.82rem;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  padding: 6px 12px;
+  border-radius: 6px;
+  transition: background 0.18s, color 0.18s;
+}
+.t-nav-link:hover,
+.t-nav-link.active { background: rgba(255,255,255,0.12); color: #fff; }
+.t-nav-user {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: rgba(255,255,255,0.85);
+  font-size: 0.82rem;
+}
+.t-nav-avatar {
+  width: 30px; height: 30px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.18);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+.t-nav-logout {
+  color: rgba(255,255,255,0.6);
+  text-decoration: none;
+  font-size: 0.78rem;
+  padding: 4px 8px;
+  border-radius: 4px;
+  border: 1px solid rgba(255,255,255,0.2);
+  transition: all 0.18s;
+}
+.t-nav-logout:hover { background: rgba(255,255,255,0.12); color: #fff; }
+
+/* ── Layout ──────────────────────────────────────────────────────── */
+.t-page { max-width: 1000px; margin: 0 auto; padding: 40px 24px 60px; }
+.t-page-wide { max-width: 1160px; margin: 0 auto; padding: 40px 24px 60px; }
+
+/* ── Page header ─────────────────────────────────────────────────── */
+.t-header { margin-bottom: 32px; }
+.t-header-eyebrow {
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--green-mid);
+  margin-bottom: 6px;
+}
+.t-header h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.1rem;
+  font-weight: 600;
+  color: var(--green);
+  line-height: 1.1;
+}
+.t-header p { color: var(--text-muted); margin-top: 6px; font-size: 0.9rem; }
+
+/* ── Cards ───────────────────────────────────────────────────────── */
+.t-card {
+  background: #fff;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+  overflow: hidden;
+}
+.t-card-header {
+  padding: 18px 24px 14px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.t-card-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--green);
+}
+.t-card-body { padding: 24px; }
+
+/* ── Stat cards ──────────────────────────────────────────────────── */
+.t-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 28px; }
+.t-stat {
+  background: #fff;
+  border-radius: var(--radius);
+  padding: 20px 24px;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+}
+.t-stat-val {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--green);
+  line-height: 1;
+}
+.t-stat-label { font-size: 0.78rem; color: var(--text-muted); margin-top: 4px; letter-spacing: 0.05em; }
+
+/* ── Form ────────────────────────────────────────────────────────── */
+.t-form { display: flex; flex-direction: column; gap: 20px; }
+.t-form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.t-form-group { display: flex; flex-direction: column; gap: 6px; }
+.t-form-group.full { grid-column: 1 / -1; }
+.t-label {
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--green);
+}
+.t-input,
+.t-select,
+.t-textarea {
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-family: 'Jost', sans-serif;
+  font-size: 0.9rem;
+  color: var(--text);
+  background: #fff;
+  transition: border-color 0.18s, box-shadow 0.18s;
+  outline: none;
+}
+.t-input:focus, .t-select:focus, .t-textarea:focus {
+  border-color: var(--green);
+  box-shadow: 0 0 0 3px rgba(51,100,61,0.10);
+}
+.t-textarea { resize: vertical; min-height: 90px; }
+.t-select { appearance: none; cursor: pointer; }
+
+/* ── Buttons ─────────────────────────────────────────────────────── */
+.t-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'Jost', sans-serif;
+  font-size: 0.84rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  padding: 10px 22px;
+  border-radius: 8px;
+  cursor: pointer;
+  border: none;
+  text-decoration: none;
+  transition: all 0.18s;
+  white-space: nowrap;
+}
+.t-btn-primary { background: var(--green); color: #fff; }
+.t-btn-primary:hover { background: #264d30; }
+.t-btn-outline {
+  background: transparent;
+  color: var(--green);
+  border: 1.5px solid var(--green);
+}
+.t-btn-outline:hover { background: var(--green-light); }
+.t-btn-danger { background: #c0392b; color: #fff; }
+.t-btn-danger:hover { background: #a93226; }
+.t-btn-sm { padding: 6px 14px; font-size: 0.78rem; }
+
+/* ── Table ───────────────────────────────────────────────────────── */
+.t-table-wrap { overflow-x: auto; }
+table.t-table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+table.t-table th {
+  text-align: left;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--border);
+  font-weight: 500;
+}
+table.t-table td {
+  padding: 14px 16px;
+  border-bottom: 1px solid rgba(51,100,61,0.07);
+  vertical-align: middle;
+}
+table.t-table tr:last-child td { border-bottom: none; }
+table.t-table tr:hover td { background: rgba(51,100,61,0.03); }
+
+/* ── Badges ──────────────────────────────────────────────────────── */
+.t-badge {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.t-badge-pending  { background: #fff3e0; color: #e65100; }
+.t-badge-confirmed{ background: #e8f5e9; color: #2e7d32; }
+.t-badge-cancelled{ background: #fce4ec; color: #c62828; }
+
+/* ── Alert ───────────────────────────────────────────────────────── */
+.t-alert {
+  padding: 12px 18px;
+  border-radius: 8px;
+  font-size: 0.88rem;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.t-alert-success { background: #e8f5e9; color: #2e7d32; border: 1px solid #a5d6a7; }
+.t-alert-error   { background: #fce4ec; color: #c62828; border: 1px solid #ef9a9a; }
+
+/* ── Empty state ─────────────────────────────────────────────────── */
+.t-empty {
+  text-align: center;
+  padding: 48px 24px;
+  color: var(--text-muted);
+}
+.t-empty svg { width: 48px; height: 48px; margin-bottom: 14px; opacity: 0.35; }
+.t-empty p { font-size: 0.92rem; }
+
+/* ── Welcome banner ──────────────────────────────────────────────── */
+.t-welcome {
+  background: linear-gradient(135deg, var(--green) 0%, #4a7a3a 100%);
+  border-radius: var(--radius);
+  padding: 28px 32px;
+  color: #fff;
+  margin-bottom: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+.t-welcome-text h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.7rem;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+.t-welcome-text p { opacity: 0.80; font-size: 0.88rem; }
+
+/* ── Responsive ──────────────────────────────────────────────────── */
+@media (max-width: 700px) {
+  .t-nav { padding: 0 16px; }
+  .t-nav-links { display: none; }
+  .t-form-grid { grid-template-columns: 1fr; }
+  .t-stats { grid-template-columns: 1fr 1fr; }
+  .t-welcome { flex-direction: column; }
+  .t-page, .t-page-wide { padding: 24px 16px 48px; }
+}
